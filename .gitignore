@@ -1,0 +1,5 @@
+/env
+/__pycache__
+clinical.db
+clinical.log
+clinical.log.1
