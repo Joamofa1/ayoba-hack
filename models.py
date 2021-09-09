@@ -3,7 +3,7 @@ from config import *
 import sqlite3
 
 class Database():
-	def __init__(self, name='test.db'):
+	def __init__(self, name='clinic_database.db'):
 		self.name = name
 
 		self.connection = sqlite3.connect(self.name)
