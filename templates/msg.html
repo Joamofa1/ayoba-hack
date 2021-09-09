@@ -46,19 +46,39 @@
                     and access password is <strong>"{{ pwd }}"</strong>
                 </div>
 
-                <script src="../static/js/microapp.js">
-                    Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
-                </script>
 
 
                 <script>
 
-                    function sendID(message) {
-                        sendMessage(message);
-                        alert('message sent!!!')
+                    var Ayoba = getAyoba()
+
+                    /**
+                    * Determine the mobile operating system and returns the
+                    * proper javascript interface
+                    */
+                    function getAyoba() {
+                        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+                        // Windows Phone must come first because its UA also contains "Android"
+                        if (/windows phone/i.test(userAgent)) {
+                            return null;
+                        }
+
+                        if (/android/i.test(userAgent)) {
+                            return Android;
+                        }
+
+                        // iOS detection from: http://stackoverflow.com/a/9039885/177710
+                        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                            return null; // todo
+                        }
+
+                        return "unknown";
                     }
 
-                    sendID('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+
+                    Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+                    sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
 
 
                 </script>
@@ -86,40 +106,7 @@
     <script src="{{ url_for('static', filename='js/retina-1.1.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
-    <script>
 
-        var Ayoba = getAyoba()
-
-        /**
-        * Determine the mobile operating system and returns the
-        * proper javascript interface
-        */
-        function getAyoba() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            // Windows Phone must come first because its UA also contains "Android"
-            if (/windows phone/i.test(userAgent)) {
-                return null;
-            }
-
-            if (/android/i.test(userAgent)) {
-                return Android;
-            }
-
-            // iOS detection from: http://stackoverflow.com/a/9039885/177710
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return null; // todo
-            }
-
-            return "unknown";
-        }
-
-        document.getElementById("continue-button").addEventListener("click", function () {
-            Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
-            sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
-        });
-
-    </script>
 
 </body>
 
