@@ -290,6 +290,10 @@
 
 
                                     <script src="../static//js/microapp.js">
+
+
+
+                                        Ayoba = getAyoba();
                                                                         
                                         document.getElementById("validatedCustomFile").addEventListener("click", function () {
                                             Ayoba.takePicture();
@@ -306,6 +310,11 @@
                                     <script src="../static//js/microapp.js">
                                                                         
                                         document.getElementById("submit-button").addEventListener("click", function () {
+
+
+                                            Ayoba = getAyoba();
+
+
                                             Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
                                             sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
                                         });
