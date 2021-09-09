@@ -1,90 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>UG Clinical Registration</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UG Clinical Registration</title>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/form-elements.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form-elements.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-        <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.png') }}">
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.png') }}">
 
-    </head>
+</head>
 
-    <body>
-<!--         <div class="top-content">
- -->            <div class="container" style="padding-top: 20px;">
+<body>
+    <!--         <div class="top-content">
+ -->
+    <div class="container" style="padding-top: 20px;">
 
-                <div class="row">
-                    <div class="col-sm-8 col-sm-offset-2 text">
-                        <img src="{{ url_for('static', filename='img/logo.png') }}" width="150px" height="100px">
-                        <h1 style="color: rgb(0, 56, 108); font-size: x-large;"><strong>Clinical Examination</strong></h1>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
-                    
-                            {% if msg == 'error' %}
-                                <div class="alert alert-danger" role="alert" style="margin-top: 20px">
-                                  The server encountered an error, please try again!
-                                </div>
-                            {% elif msg == 'success' %}
-                                <div class="alert alert-success" role="alert">
-                                  Success, 
-                                  Your patient ID is <strong>"{{iD}}"</strong>
-                                   and access password is <strong>"{{ pwd }}"</strong>
-                                </div>
-
-                                <script src="../static/js/microapp.js"></script>
-                                <script>Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}')</script>
-                                <script>
-                                    
-                                     function sendID(message)  {
-                                        Ayoba.sendMessage(message)
-                                    }
-
-                                    sendID('Your Patient ID is {{iD}} and access code is {{ pwd }}')
-                                </script>
-
-                                <div class="alert alert-success" role="alert">
-                                 <strong>Please write down your patient ID and access code, you will need it to log in</strong>
-                                </div>
-                                <a href="/login">
-                                    <button class="btn btn-submit" style="background: #0e6400;" id='continue-button'>Continue to login</button>
-                                </a>
-                            {% endif %}
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" width="150px" height="100px">
+                <h1 style="color: rgb(0, 56, 108); font-size: x-large;"><strong>Clinical Examination</strong></h1>
             </div>
-<!--         </div> -->
-        <!-- Javascript -->
-        <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/jquery.backstretch.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/retina-1.1.0.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-<!-- 
-        <script>
+        </div>
 
-            document.getElementById("btn-alert").addEventListener("click", function(){
-                var value=user_name.value.trim();
-                if(!value)
-                    alert("Name Cannot be empty!");
-                else
-                    alert("Hello, " + value + "!\nGreetings From GeeksforGeeks.");
-            });
-        </script> -->
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
 
-    </body>
+                {% if msg == 'error' %}
+                <div class="alert alert-danger" role="alert" style="margin-top: 20px">
+                    The server encountered an error, please try again!
+                </div>
+                {% elif msg == 'success' %}
+                <div class="alert alert-success" role="alert">
+                    Success,
+                    Your patient ID is <strong>"{{iD}}"</strong>
+                    and access password is <strong>"{{ pwd }}"</strong>
+                </div>
+
+                <script src="../static/js/microapp.js">
+                    Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+                </script>
+
+
+                <script>
+
+                    function sendID(message) {
+                        sendMessage(message);
+                        alert('message sent!!!')
+                    }
+
+                    sendID('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+                 
+
+                </script>
+
+
+                <div class="alert alert-success" role="alert">
+                    <strong>Please write down your patient ID and access code, you will need it to log in</strong>
+                </div>
+
+                <a href="/login">
+                    <button class="btn btn-submit" style="background: #0e6400;" id='continue-button'>Continue to
+                        login</button>
+                </a>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <!--         </div> -->
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.backstretch.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/retina-1.1.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+    <script>
+
+        document.getElementById("continue-button").addEventListener("click", function(){
+            Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+            sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+        });
+    </script>
+
+</body>
 
 </html>
