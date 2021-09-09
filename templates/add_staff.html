@@ -213,9 +213,9 @@
 
 
             <input type="file" name='img' class="form-control border-3 large" style="padding-bottom: 45px;"
-              id="validatedCustomFile" accept='image/*' name="img" placeholder="Upload" onclick="Ayoba.takePicture()">
+              id="validatedCustomFile" accept='image/*' name="img" placeholder="Upload">
 
-            <button style="margin-top: 20px; margin-bottom: 20px" type="submit" class="btn btn-primary">Submit</button>
+            <button style="margin-top: 20px; margin-bottom: 20px" type="submit" class="btn btn-primary" id='submit-button'>Submit</button>
 
 
             <!-- <button onclick="document.getElementById('file-input').click();">Open</button>
@@ -300,44 +300,85 @@
   <!-- Page level custom scripts -->
   <script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
 
-  <script src="../static//js/microapp.js">
+   
+  <script>
 
-    document.getElementById("submit-button").addEventListener("click", function () {
 
 
-        var Ayoba = getAyoba()
+    var Ayoba = getAyoba()
 
-        /**
-        * Determine the mobile operating system and returns the
-        * proper javascript interface
-        */
-        function getAyoba() {
+    /**
+    * Determine the mobile operating system and returns the
+    * proper javascript interface
+    */
+    function getAyoba() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            // Windows Phone must come first because its UA also contains "Android"
-            if (/windows phone/i.test(userAgent)) {
-                return null;
-            }
-
-            if (/android/i.test(userAgent)) {
-                return Android;
-            }
-
-            // iOS detection from: http://stackoverflow.com/a/9039885/177710
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return null; // todo
-            }
-
-            return "unknown";
+        // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return null;
         }
 
+        if (/android/i.test(userAgent)) {
+            return Android;
+        }
 
-        Ayoba.sendMessage('Your Staff ID is {{iD}} and access code is {{ pwd }}');
-        sendMessage('Your Staff ID is {{iD}} and access code is {{ pwd }}');
+        // iOS detection from: http://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return null; // todo
+        }
+
+        return "unknown";
+    }
+
+    document.getElementById("validatedCustomFile").addEventListener("click", function () {
+        Ayoba.takePicture();
+        takePicture()
     });
 
 </script>
+
+
+<script>
+
+  document.getElementById("submit-button").addEventListener("click", function () {
+
+
+      var Ayoba = getAyoba()
+
+      /**
+      * Determine the mobile operating system and returns the
+      * proper javascript interface
+      */
+      function getAyoba() {
+
+          var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+          // Windows Phone must come first because its UA also contains "Android"
+          if (/windows phone/i.test(userAgent)) {
+              return null;
+          }
+
+          if (/android/i.test(userAgent)) {
+              return Android;
+          }
+
+          // iOS detection from: http://stackoverflow.com/a/9039885/177710
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+              return null; // todo
+          }
+
+          return "unknown";
+      }
+
+
+      Ayoba.composeMessage()
+      Ayoba.sendMessage('Your Staff ID is {{iD}} and access code is {{ pwd }}');
+      sendMessage('Your Staff ID is {{iD}} and access code is {{ pwd }}');
+  });
+
+</script>
+
 
 </body>
 
