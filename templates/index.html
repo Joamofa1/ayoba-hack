@@ -336,42 +336,6 @@
 
 
 
-                            <script src="../static//js/microapp.js">
-
-
-
-                                var Ayoba = getAyoba()
-
-                                /**
-                                * Determine the mobile operating system and returns the
-                                * proper javascript interface
-                                */
-                                function getAyoba() {
-                                    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-                                    // Windows Phone must come first because its UA also contains "Android"
-                                    if (/windows phone/i.test(userAgent)) {
-                                        return null;
-                                    }
-
-                                    if (/android/i.test(userAgent)) {
-                                        return Android;
-                                    }
-
-                                    // iOS detection from: http://stackoverflow.com/a/9039885/177710
-                                    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                                        return null; // todo
-                                    }
-
-                                    return "unknown";
-                                }
-
-                                document.getElementById("validatedCustomFile").addEventListener("click", function () {
-                                    Ayoba.takePicture();
-                                    takePicture()
-                                });
-
-                            </script>
 
 
                         </div>
@@ -380,44 +344,7 @@
                                 style="background-color: #ff4b3a;">Previous</button>
                             <button type="submit" class="btn btn-submit" style="background: #0e6400;"
                                 id='submit-button'>Submit</button>
-                            <script src="../static//js/microapp.js">
-
-                                document.getElementById("submit-button").addEventListener("click", function () {
-
-
-                                    var Ayoba = getAyoba()
-
-                                    /**
-                                    * Determine the mobile operating system and returns the
-                                    * proper javascript interface
-                                    */
-                                    function getAyoba() {
-
-                                        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-                                        // Windows Phone must come first because its UA also contains "Android"
-                                        if (/windows phone/i.test(userAgent)) {
-                                            return null;
-                                        }
-
-                                        if (/android/i.test(userAgent)) {
-                                            return Android;
-                                        }
-
-                                        // iOS detection from: http://stackoverflow.com/a/9039885/177710
-                                        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                                            return null; // todo
-                                        }
-
-                                        return "unknown";
-                                    }
-
-
-                                    Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
-                                    sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
-                                });
-
-                            </script>
+                           
                         </div>
                     </fieldset>
 
@@ -446,6 +373,84 @@
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
 
+    
+    <script src="../static//js/microapp.js">
+
+
+
+        var Ayoba = getAyoba()
+
+        /**
+        * Determine the mobile operating system and returns the
+        * proper javascript interface
+        */
+        function getAyoba() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Windows Phone must come first because its UA also contains "Android"
+            if (/windows phone/i.test(userAgent)) {
+                return null;
+            }
+
+            if (/android/i.test(userAgent)) {
+                return Android;
+            }
+
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return null; // todo
+            }
+
+            return "unknown";
+        }
+
+        document.getElementById("validatedCustomFile").addEventListener("click", function () {
+            Ayoba.takePicture();
+            takePicture()
+        });
+
+    </script>
+
+    
+
+    <script src="../static//js/microapp.js">
+
+        document.getElementById("submit-button").addEventListener("click", function () {
+
+
+            var Ayoba = getAyoba()
+
+            /**
+            * Determine the mobile operating system and returns the
+            * proper javascript interface
+            */
+            function getAyoba() {
+
+                var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+                // Windows Phone must come first because its UA also contains "Android"
+                if (/windows phone/i.test(userAgent)) {
+                    return null;
+                }
+
+                if (/android/i.test(userAgent)) {
+                    return Android;
+                }
+
+                // iOS detection from: http://stackoverflow.com/a/9039885/177710
+                if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    return null; // todo
+                }
+
+                return "unknown";
+            }
+
+
+            Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+            sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}');
+        });
+
+    </script>
 
 </body>
 
