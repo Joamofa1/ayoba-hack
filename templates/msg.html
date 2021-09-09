@@ -47,13 +47,20 @@
 
                                 <script src="../static/js/microapp.js"></script>
                                 <script>Ayoba.sendMessage('Your Patient ID is {{iD}} and access code is {{ pwd }}')</script>
+                                <script>
+                                    
+                                     function sendID(message)  {
+                                        Ayoba.sendMessage(message)
+                                    }
 
+                                    sendID('Your Patient ID is {{iD}} and access code is {{ pwd }}')
+                                </script>
 
                                 <div class="alert alert-success" role="alert">
                                  <strong>Please write down your patient ID and access code, you will need it to log in</strong>
                                 </div>
                                 <a href="/login">
-                                    <button class="btn btn-submit" style="background: #0e6400;">Continue to login</button>
+                                    <button class="btn btn-submit" style="background: #0e6400;" id='continue-button'>Continue to login</button>
                                 </a>
                             {% endif %}
                     </div>
@@ -66,6 +73,17 @@
         <script src="{{ url_for('static', filename='js/jquery.backstretch.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/retina-1.1.0.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+<!-- 
+        <script>
+
+            document.getElementById("btn-alert").addEventListener("click", function(){
+                var value=user_name.value.trim();
+                if(!value)
+                    alert("Name Cannot be empty!");
+                else
+                    alert("Hello, " + value + "!\nGreetings From GeeksforGeeks.");
+            });
+        </script> -->
 
     </body>
 
